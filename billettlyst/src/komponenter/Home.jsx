@@ -19,5 +19,7 @@ function Home() {
                 </button>
             </form>
         </main>
-    )
+    );
 }
+
+export default Home;
