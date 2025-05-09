@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Dashboard() {
-    const [isLoggenIn, setIsLoggedIn] = usestate(false);
+    const [isLoggenIn, setIsLoggedIn] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();

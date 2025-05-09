@@ -1,5 +1,7 @@
-import { useEffect, useState } from React;
+import React, { useEffect, useState } from React;
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function Home() {
     const [festivals, setFestivals] = useState([]);
