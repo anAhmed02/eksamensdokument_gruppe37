@@ -1,5 +1,6 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from './Navbar';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './komponenter/Navbar';
 import Home from "./komponenter/Home";
 import EventPage from "./komponenter/EventPage";
 import CategoryPage from "./komponenter/CategoryPage";
