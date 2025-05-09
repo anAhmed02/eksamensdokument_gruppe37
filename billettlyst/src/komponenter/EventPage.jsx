@@ -8,10 +8,10 @@ function EventPage() {
 
     useEffect(() => {
         fetch(
-            `https://app.ticketmaster.com/discovery/v2/events/$%7Bid%7D.json?apikey=${API_KEY}`
+            `https://app.ticketmaster.com/discovery/v2/events/${id}.json?apikey={API_KEY}`
         )
         .then((res) => res.json())
-        .then((data) => setEvent());
+        .then((data) => setEvent(data));
     }, [id]);
 
     if (!event) return <p>Laster arrangement...</p>;
@@ -29,11 +29,11 @@ function EventPage() {
         <p><strong>Sted:</strong> {event._embedded?.venues?.[0]?.name}, {event._embedded?.venues?.[0]?.city?.name}, {event._embedded?.venues?.[0]?.country?.name}</p>
         <p><strong>Info:</strong> {event.info || "Ingen beskrivelse tilgjengelig."}</p>
         {event.url && (
-            <P>
+            <p>
                 <a href={event.url} target="_blank" rel="noopener noreferrer">
                     Kjøp billetter
                 </a>
-            </P>
+            </p>
         )}
     </main>
     );
