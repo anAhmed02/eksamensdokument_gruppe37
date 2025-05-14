@@ -7,21 +7,25 @@ function Home() {
   const navigate = useNavigate();
 
   const API_KEY = "HX1eiAg74CfyBUI7OUbj9WGgGxkGWJDs";
-  const festivalNames = ["Findings", "Neon", "Skeikampenfestivalen", "Tons of Rock"];
+  const festivalNames = ["Findings Festival", "NEON Festival", "Skeikampenfestivalen", "Tons of Rock"];
 
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  
   useEffect(() => {
     async function fetchFestivals() {
       try {
-        const results = await Promise.all(
-          festivalNames.map(async (name) => {
-            const res = await fetch(
-              `/discovery/v2/events.json?keyword=${encodeURIComponent(name)}&countryCode=NO&apikey=${API_KEY}`
-            );
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const data = await res.json();
-            return data._embedded?.events?.[0] || null;
-          })
-        );
+        const results = [];
+        for (const name of festivalNames) {
+          const result = await fetch(
+            `https://app.ticketmaster.com/discovery/v2/attractions.json?keyword=${name}&countryCode=NO&apikey=${API_KEY}`
+          );
+          if (!result.ok) throw new Error(`HTTP ${result.status}`);
+          const data = await result.json();
+          results.push(data._embedded?.attractions?.[0] || null);
+          await delay(500); 
+        }
         setFestivals(results.filter(Boolean));
       } catch (err) {
         console.error("Feil ved henting av festivaler:", err);
@@ -29,6 +33,8 @@ function Home() {
     }
     fetchFestivals();
   }, []);
+  
+  
 
   const handleSearch = (e) => {
     e.preventDefault();

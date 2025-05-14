@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   const [festivals, setFestivals] = useState([]);
-  const API_KEY = 'HX1eiAg74CfyBUI7OUbj9WGgGxkGWJDs'; // Flytt gjerne til .env
+  const API_KEY = 'HX1eiAg74CfyBUI7OUbj9WGgGxkGWJDs'; 
   const festivalNames = [
     'Findings',
     'Neon',
@@ -16,7 +16,7 @@ export default function Home() {
       const results = await Promise.all(
         festivalNames.map(async (name) => {
           const result = await fetch(
-            `/discovery/v2/events.json?keyword=${encodeURIComponent(name)}&countryCode=NO&apikey=${API_KEY}`
+            `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${name}&countryCode=NO&apikey=${API_KEY}`
           );
           const data = await result.json();
           return data._embedded?.events?.[0] || null;
