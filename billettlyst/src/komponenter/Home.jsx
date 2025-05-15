@@ -42,35 +42,35 @@ function Home() {
       navigate(`/category/${searchTerm.toLowerCase()}`);
     }
   };
+return (
+  <main>
+    <h1>Klar for årets festival?</h1>
 
-  return (
-    <main>
-      <h1>Klar for årets festival?</h1>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Søk etter arrangement"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="submit">Søk</button>
-      </form>
+    <section className="festival-grid">
+      {festivals.map((event) => (
+        /* Viktig: bruk <article> med className="festival-card" */
+        <article key={event.id} className="festival-card">
+          {/* Bilde øverst */}
+          {event.images?.[0]?.url && (
+            <img
+              src={event.images[0].url}
+              alt={`Plakat for ${event.name}`}
+            />
+          )}
 
-      <section className="grid">
-        {festivals.length === 0 ? (
-          <p>Laster festivaler…</p>
-        ) : (
-          festivals.map((event) => (
-            <Link key={event.id} to={`/event/${event.id}`} className="card">
-              <h3>{event.name}</h3>
-              {event.images?.[0]?.url && <img src={event.images[0].url} alt={event.name} />}
-              <p>{event.dates?.start?.localDate}</p>
+          {/* Innholdsdelen */}
+          <div className="festival-card-content">
+            <h2>{event.name}</h2>
+            {/* Knapp-lenke */}
+            <Link to={`/event/${event.id}`} className="btn">
+              Les mer om {event.name}
             </Link>
-          ))
-        )}
-      </section>
-    </main>
-  );
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+);
 }
 
 export default Home;

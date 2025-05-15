@@ -5,6 +5,7 @@ import Home from "./komponenter/Home";
 import EventPage from "./komponenter/EventPage";
 import CategoryPage from "./komponenter/CategoryPage";
 import Dashboard from "./komponenter/Dashboard";
+import './App.css'
 
 function App() {
     
