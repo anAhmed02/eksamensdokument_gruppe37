@@ -7,6 +7,7 @@ import CategoryPage from "./komponenter/CategoryPage";
 import Dashboard from "./komponenter/Dashboard";
 import EventCard from "./komponenter/EventCard";
 import ArtistCard from "./komponenter/ArtistCard";
+import Footer from "./komponenter/Footer";
 import './App.css'
 
 function App() {
