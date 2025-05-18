@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import EventCard from './EventCard';
 
 function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
